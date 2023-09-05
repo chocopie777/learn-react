@@ -1,25 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import { people } from './data.js';
+import { getImageUrl } from './utils.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+export default function List() {
+    const listItems = people.map(person =>
+    <li key={person.id}>
+        <img src={getImageUrl(person)} alt={person.name}/>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+            <b>{person.name}:</b>
+            {' ' + person.profession + ' '}
+            known for {person.accomplishment}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    </li>)
+    return (
+        <article>
+            <h1>Scientists</h1>
+            <ul>{listItems}</ul>
+        </article>
+    );
 }
 
-export default App;
+
